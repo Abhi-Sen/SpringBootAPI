@@ -1,3 +1,11 @@
-.idea
-/springrest/target/
-/springrest/target/*
+springrest/target/
+.classpath
+.project
+*.prefs
+.flattened-pom.xml
+.factorypath
+
+.idea/
+*.iml
+src/bin/
+
