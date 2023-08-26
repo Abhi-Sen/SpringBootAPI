@@ -1,5 +1,6 @@
 package com.springrest.springrest.services;
 
+import com.springrest.springrest.model.LoadRequestWrapper;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,8 @@ public interface LoadService {
     Optional<Load> getLoadById(Long loadId);
     Load updateLoad(Long loadId, Load updatedLoad);
     void deleteLoad(Long loadId);
+
+    void updateLoad(Long loadId, LoadRequestWrapper loadRequestWrapper);
 }
 
 

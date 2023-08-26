@@ -1,5 +1,6 @@
 package com.springrest.springrest.services;
 
+import com.springrest.springrest.model.LoadRequestWrapper;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,23 @@ public class LoadServiceImpl implements LoadService {
             existingLoad.setWeight(updatedLoad.getWeight());
             existingLoad.setComment(updatedLoad.getComment());
             existingLoad.setDate(updatedLoad.getDate());
+
+            return loadRepository.save(existingLoad);
+        } else {
+            throw new EntityNotFoundException("Load with ID " + loadId + " not found");
+        }
+    }
+
+    @Override
+    public Load updateLoad(Long loadId, LoadRequestWrapper updatedLoad) {
+        Optional<Load> existingLoadOptional = loadRepository.findById(loadId);
+        if (existingLoadOptional.isPresent()) {
+            Load existingLoad = existingLoadOptional.get();
+            //do similar for all the fields
+            if (updatedLoad.getLoadingPoint() != null) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            // Update existingLoad fields with updatedLoad
 
             return loadRepository.save(existingLoad);
         } else {
