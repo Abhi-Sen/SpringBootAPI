@@ -21,33 +21,12 @@ curl --location 'localhost:8080/load' \
 
 Step2 : GET the loadId using below curl
 curl --location --request GET 'localhost:8080/load?shipperId=128' \
---header 'Content-Type: application/json' \
---data '{
-    "loadingPoint": "alwar",
-    "unloadingPoint": "jaipur",
-    "productType": "chemicals",
-    "truckType": "canter",
-    "noOfTrucks": 1,
-    "weight": 110.0,
-    "comment": "testing8",
-    "shipperId": "128",
-    "date": "01-01-2004"
-}'
+--header 'Content-Type: application/json' 
 
 Step3: from the step2 copy the loadId and use it to get load
 curl --location --request GET 'localhost:8080/load/{loadId}' \
---header 'Content-Type: application/json' \
---data '{
-    "loadingPoint": "alwar",
-    "unloadingPoint": "jaipur",
-    "productType": "chemicals",
-    "truckType": "canter",
-    "noOfTrucks": 1,
-    "weight": 110.0,
-    "comment": "testing8",
-    "shipperId": "128",
-    "date": "01-01-2004"
-}'
+--header 'Content-Type: application/json' 
+
 
 Step4: If you want to update use the below curl and set your desirable fields which you want to update
 curl --location --request PUT 'localhost:8080/load/{loadId}' \
@@ -66,16 +45,5 @@ curl --location --request PUT 'localhost:8080/load/{loadId}' \
 
 Step5 : Delete
 curl --location --request DELETE 'localhost:8080/load/{loadId}' \
---header 'Content-Type: application/json' \
---data '{
-    "loadingPoint": "alwar",
-    "unloadingPoint": "jaipur",
-    "productType": "chemicals",
-    "truckType": "canter",
-    "noOfTrucks": 1,
-    "weight": 110.0,
-    "comment": "testing8",
-    "shipperId": "128",
-    "date": "01-01-2004"
-}'
+--header 'Content-Type: application/json' 
 
