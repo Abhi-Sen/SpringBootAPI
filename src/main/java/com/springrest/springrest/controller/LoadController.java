@@ -1,6 +1,7 @@
 package com.springrest.springrest.controller;
 
 
+import com.springrest.springrest.model.LoadRequestWrapper;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +26,8 @@ public class LoadController {
     private LoadService loadService;
 
     @PostMapping("/load")
-    public ResponseEntity<String> addLoad(@RequestBody Load load) {
-        loadService.addLoad(load);
+    public ResponseEntity<String> addLoad(@RequestBody LoadRequestWrapper loadRequestWrapper) {
+        loadService.addLoad(loadRequestWrapper);
         return ResponseEntity.ok("Load details added successfully");
     }
 
@@ -43,8 +44,8 @@ public class LoadController {
     }
 
     @PutMapping("/load/{loadId}")
-    public ResponseEntity<String> updateLoad(@PathVariable Long loadId, @RequestBody Load updatedLoad) {
-        loadService.updateLoad(loadId, updatedLoad);
+    public ResponseEntity<String> updateLoad(@PathVariable Long loadId, @RequestBody LoadRequestWrapper loadRequestWrapper) {
+    	loadService.updateLoad(loadId, loadRequestWrapper);
         return ResponseEntity.ok("Load updated successfully");
     }
 

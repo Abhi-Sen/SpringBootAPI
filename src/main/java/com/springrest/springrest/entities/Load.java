@@ -2,6 +2,7 @@ package com.springrest.springrest.entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,8 @@ public class Load{
     private double weight;
     private String comment;
     private String shipperId;
+    
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
     
     // default constructor
