@@ -1,6 +1,8 @@
 package com.springrest.springrest.services;
 
 import com.springrest.springrest.model.LoadRequestWrapper;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,20 +13,34 @@ import com.springrest.springrest.entities.Load;
 import com.springrest.springrest.entities.LoadRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.util.CollectionUtils;
 
 @Service
 public class LoadServiceImpl implements LoadService {
+
+    public static final String DD_MM_YYYY = "dd-MM-yyyy";
     @Autowired
     private LoadRepository loadRepository;
 
     @Override
-    public Load addLoad(Load load) {
+    public Load addLoad(LoadRequestWrapper loadRequestWrapper) {
+        Load load = new Load();
+        load.setComment(loadRequestWrapper.getComment());
+        load.setDate(LocalDate.parse(loadRequestWrapper.getDate(),DateTimeFormatter.ofPattern(
+          DD_MM_YYYY)));
+        load.setLoadingPoint(loadRequestWrapper.getLoadingPoint());
+        load.setNoOfTrucks(loadRequestWrapper.getNoOfTrucks());
+        load.setProductType(loadRequestWrapper.getProductType());
+        load.setShipperId(loadRequestWrapper.getShipperId());
+        load.setWeight(loadRequestWrapper.getWeight());
+        load.setUnloadingPoint(loadRequestWrapper.getUnloadingPoint());
+        load.setTruckType(loadRequestWrapper.getTruckType());
         return loadRepository.save(load);
     }
 
     @Override
     public List<Load> getLoadsByShipperId(String shipperId) {
-    	System.out.print("I am here");
+    	System.out.print("Getting load by shipperId");
         return loadRepository.findByShipperId(shipperId);
     }
 
@@ -62,6 +78,24 @@ public class LoadServiceImpl implements LoadService {
             Load existingLoad = existingLoadOptional.get();
             //do similar for all the fields
             if (updatedLoad.getLoadingPoint() != null) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            if (updatedLoad.getComment() != null) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            if (updatedLoad.getNoOfTrucks() != 0) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            if (updatedLoad.getProductType() != null) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            if (updatedLoad.getTruckType() != null) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            if (updatedLoad.getUnloadingPoint() != null) {
+                existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
+            }
+            if (updatedLoad.getWeight() != 0) {
                 existingLoad.setLoadingPoint(updatedLoad.getLoadingPoint());
             }
             // Update existingLoad fields with updatedLoad

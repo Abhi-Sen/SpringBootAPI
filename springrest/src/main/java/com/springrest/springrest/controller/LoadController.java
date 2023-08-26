@@ -26,8 +26,8 @@ public class LoadController {
     private LoadService loadService;
 
     @PostMapping("/load")
-    public ResponseEntity<String> addLoad(@RequestBody Load load) {
-        loadService.addLoad(load);
+    public ResponseEntity<String> addLoad(@RequestBody LoadRequestWrapper loadRequestWrapper) {
+        loadService.addLoad(loadRequestWrapper);
         return ResponseEntity.ok("Load details added successfully");
     }
 
@@ -46,7 +46,6 @@ public class LoadController {
     @PutMapping("/load/{loadId}")
     public ResponseEntity<String> updateLoad(@PathVariable Long loadId, @RequestBody LoadRequestWrapper loadRequestWrapper) {
         loadService.updateLoad(loadId, loadRequestWrapper);
-//        loadService.updateLoad(loadId, updatedLoad);
         return ResponseEntity.ok("Load updated successfully");
     }
 

@@ -3,11 +3,13 @@
  */
 package com.springrest.springrest.model;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * @author s0r06mz
  **/
+@JsonInclude(Include.NON_NULL)
 public class LoadRequestWrapper {
 
   private String loadingPoint;
@@ -18,15 +20,11 @@ public class LoadRequestWrapper {
   private double weight;
   private String comment;
   private String shipperId;
-  private LocalDate date;
-
-  public LoadRequestWrapper() {
-    this("", "", "", "", 0, 0.0, "", "", null);
-  }
+  private String date;
 
   public LoadRequestWrapper(String loadingPoint, String unloadingPoint, String productType,
     String truckType, int noOfTrucks, double weight, String comment, String shipperId,
-    LocalDate date) {
+    String date) {
     this.loadingPoint = loadingPoint;
     this.unloadingPoint = unloadingPoint;
     this.productType = productType;
@@ -102,11 +100,11 @@ public class LoadRequestWrapper {
     this.shipperId = shipperId;
   }
 
-  public LocalDate getDate() {
+  public String getDate() {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate(String date) {
     this.date = date;
   }
 }
