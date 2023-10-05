@@ -30,7 +30,6 @@ public class Load{
     // default constructor
 	public Load() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	// constructors for the fields
